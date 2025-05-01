@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Random Titles</title>
+    <style>
+        /* Styling to replicate iongaf.xyz */
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #0f0f0f; /* Dark background */
+            color: #ffffff; /* White text */
+            font-family: 'Courier New', Courier, monospace; /* Monospaced font */
+            position: relative;
+            height: 100vh;
+            overflow: hidden; /* Prevent scrollbars */
+        }
+
+        a {
+            position: absolute;
+            font-size: 1.5em;
+            text-decoration: none;
+            color: #00ffff; /* Cyan color for links */
+            font-weight: bold;
+            transition: color 0.3s;
+        }
+
+        a:hover {
+            color: #ff00ff; /* Magenta on hover */
+        }
+    </style>
+</head>
+<body>
+    <script>
+        // Array of titles and links
+        const titles = [
+            { text: "Google", link: "https://google.com" },
+            { text: "GitHub", link: "https://github.com" },
+            { text: "YouTube", link: "https://youtube.com" },
+            { text: "Wikipedia", link: "https://wikipedia.org" },
+            { text: "Amazon", link: "https://amazon.com" }
+        ];
+
+        // Function to generate random positions
+        function getRandomPosition(maxWidth, maxHeight) {
+            const x = Math.random() * maxWidth;
+            const y = Math.random() * maxHeight;
+            return { x, y };
+        }
+
+        // Place titles randomly on the page
+        function placeTitles() {
+            const maxWidth = window.innerWidth - 100; // Adjust for title width
+            const maxHeight = window.innerHeight - 50; // Adjust for title height
+
+            titles.forEach(title => {
+                const linkElement = document.createElement('a');
+                linkElement.textContent = title.text;
+                linkElement.href = title.link;
+                linkElement.target = "_blank"; // Open in a new tab
+
+                // Get random position
+                const position = getRandomPosition(maxWidth, maxHeight);
+                linkElement.style.left = `${position.x}px`;
+                linkElement.style.top = `${position.y}px`;
+
+                document.body.appendChild(linkElement);
+            });
+        }
+
+        // Initialize titles
+        placeTitles();
+    </script>
+</body>
+</html>
